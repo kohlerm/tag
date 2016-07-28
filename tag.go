@@ -184,7 +184,7 @@ func main() {
 		args = append(tagArgs, args...)
 	}
 
-	cmd := exec.Command("ag", args...)
+	cmd := exec.Command("pt", args...)
 	cmd.Stderr = os.Stderr
 
 	if noTag || !isatty(os.Stdin) || !isatty(os.Stdout) {
