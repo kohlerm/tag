@@ -4,7 +4,7 @@ tag - Tag your ag matches
 
 **tag** is a lightweight wrapper around **[ag](https://github.com/ggreer/the_silver_searcher)** that generates shell aliases for **ag** matches. tag is a very fast Golang rewrite of [sack](https://github.com/sampson-chen/sack).
 
-tag only supports ag. There are no plans to support ack or grep. Support for pt may be added if users show interest.
+tag only supports ag. There are no plans to support ack or grep. This forks works with pt (was: Support for pt may be added if users show interest.)
 
 ## Why should I use tag?
 
@@ -48,9 +48,9 @@ $ time ( for _ in {1..10}; do tag EXPORT_SYMBOL_GPL >/dev/null 2>&1; done )
 1. Since tag generates a file with command aliases for your shell, you'll have to drop the following in your `bashrc`/`zshrc` to actually pick up those aliases.
     - `bash`
       ```bash
-      if hash ag 2>/dev/null; then
+      if hash pt 2>/dev/null; then
         tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null; }
-        alias ag=tag
+        alias pt=tag
       fi
       ```
 
@@ -58,7 +58,7 @@ $ time ( for _ in {1..10}; do tag EXPORT_SYMBOL_GPL >/dev/null 2>&1; done )
       ```zsh
       if (( $+commands[tag] )); then
         tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
-        alias ag=tag
+        alias pt=tag
       fi
       ```
 
@@ -67,7 +67,7 @@ $ time ( for _ in {1..10}; do tag EXPORT_SYMBOL_GPL >/dev/null 2>&1; done )
       function tag
           set -q TAG_ALIAS_FILE; or set -l TAG_ALIAS_FILE /tmp/tag_aliases
           command tag $argv; and source $TAG_ALIAS_FILE ^/dev/null
-          alias ag tag
+          alias pt tag
       end
       ```
 
@@ -92,3 +92,4 @@ tag exposes the following configuration options via environment variables:
 # Author
 
 [aykamko](https://github.com/aykamko)
+[kohlerm](https://github.com/kohlerm) PT fork
